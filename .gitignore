@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# SQLite database file (contains user data)
+backend/database.sqlite
+
+# Environment variables
+.env
+backend/.env
+frontend/.env
+
+# Build output
+frontend/dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test files
+test_judge0_stdin.js
+test_api.js
