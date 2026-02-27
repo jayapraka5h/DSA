@@ -63,7 +63,7 @@ DSA/
 ├── backend/
 │   ├── controllers/      # Auth, Questions, Rooms, Solutions
 │   ├── routes/           # API route definitions
-│   ├── middleware/        # JWT auth middleware
+│   ├── middleware/       # JWT auth middleware
 │   ├── db.js             # SQLite setup
 │   └── server.js         # Express + Socket.IO server
 └── frontend/

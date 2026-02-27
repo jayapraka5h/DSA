@@ -3,18 +3,24 @@ import axios from 'axios';
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+// Set axios defaults synchronously at module load so every request has the token
+axios.defaults.baseURL = (import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api';
+const _storedToken = localStorage.getItem('token');
+if (_storedToken) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${_storedToken}`;
+}
 
-  // Configure axios defaults
-  axios.defaults.baseURL = 'http://localhost:5000/api';
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(() => {
+    // Initialize user state synchronously from localStorage
+    const userData = localStorage.getItem('user');
+    return userData ? JSON.parse(userData) : null;
+  });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      const userData = JSON.parse(localStorage.getItem('user'));
-      setUser(userData);
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
     setLoading(false);

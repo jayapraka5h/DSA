@@ -20,6 +20,8 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
-# Test files
+# Test/temp files
 test_judge0_stdin.js
 test_api.js
+create_room_test.js
+frontend/src/test_token.js
